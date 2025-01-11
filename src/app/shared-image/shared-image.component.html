@@ -1,0 +1,13 @@
+<h2>{{ post.titre }}</h2>
+<p>{{ post.description }}</p>
+<img [src]="post.image" [alt]="post.titre">
+@if (post.location) {
+    <p>{{ post.location }}</p>
+} @else {
+    <p>Localisation non spécifiée</p>
+}
+<p>Mis en ligne le {{ post.date }}</p>
+<p>
+    <button (click)="onLike()">{{ likeButtonText }}</button>
+    {{ post.likes }} 👍
+</p>
