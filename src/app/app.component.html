@@ -1,5 +1,6 @@
 
-<app-shared-image [post]="myPostOne"></app-shared-image>
-<app-shared-image [post]="myPostTwo"></app-shared-image>
-<app-shared-image [post]="myPostOne"></app-shared-image>
-<app-shared-image [post]="myPostThree"></app-shared-image>
+@for (myPost of postList; track myPost.titre) {
+    <app-shared-image [post]="myPost" />
+
+}
+
