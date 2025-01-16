@@ -16,6 +16,12 @@ export class PostsService {
         return[...this.postList]
     }
 
+    getPostById(id: string): Post {
+        const foundPost: Post | undefined = this.postList.find(post => post.id === id)
+        if(!foundPost) throw new Error('Post non trouvé')
+        return foundPost
+    }
+
     postLikedById(id: string, likeType: LikeType) {
         const foundPost: Post | undefined = this.postList.find(post => post.id === id)
         

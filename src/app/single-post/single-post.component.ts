@@ -1,33 +1,38 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Post } from '../models/post';
 import { NgStyle } from '@angular/common';
 import { PostsService } from '../services/posts.service';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-shared-image',
+  selector: 'app-single-post',
   imports: [
     NgStyle,
     CommonModule,
     DatePipe,
     RouterLink
   ],
-  templateUrl: './shared-image.component.html',
-  styleUrl: './shared-image.component.scss'
+  templateUrl: './single-post.component.html',
+  styleUrl: './single-post.component.scss'
 })
-export class SharedImageComponent implements OnInit {
-  @Input() post!: Post
+export class SinglePostComponent implements OnInit {
+  post!: Post
   @ViewChild("boutonLike") boutonLike!: ElementRef<HTMLButtonElement>
   liked!: boolean
   likeButtonText! : string
 
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     //Likes
     this.liked = false
     this.likeButtonText = "Like"
+
+    const postId = this.route.snapshot.params['id']
+    this.post = this.postsService.getPostById(postId)
   }
 
   onLike(): void {

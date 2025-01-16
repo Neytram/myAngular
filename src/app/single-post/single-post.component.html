@@ -1,10 +1,7 @@
 <div class="sharedImage" [ngClass]="{ 'sharedImageLiked': liked }">
     <h2>{{ post.titre | uppercase}}</h2>
     <p>{{ post.description }}</p>
-    <a routerLink="{{post.id}}">
-        <img [src]="post.image" [alt]="post.titre" class="image">
-    </a>
-    
+    <img [src]="post.image" [alt]="post.titre" class="image">
     @if (post.location) {
         <p class="location">- {{ post.location }} -</p>
     } @else {
@@ -18,3 +15,4 @@
         </p>
     </section>
 </div>
+<a routerLink="/posts" [ngStyle]="{ 'font-family': 'Montserrat'}">BACK</a>
