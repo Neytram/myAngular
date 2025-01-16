@@ -1,5 +1,5 @@
-<div class="sharedImage">
-    <h2>{{ post.titre }}</h2>
+<div class="sharedImage" [ngClass]="{ 'sharedImageLiked': liked }">
+    <h2>{{ post.titre | uppercase}}</h2>
     <p>{{ post.description }}</p>
     <img [src]="post.image" [alt]="post.titre" class="image">
     @if (post.location) {
@@ -7,7 +7,7 @@
     } @else {
         <p class="emptyLocation">Localisation non spécifiée</p>
     }
-    <p class="date">Mis en ligne le {{ post.date }}</p>
+    <p class="date">Mis en ligne le {{ post.date | date: 'd MMMM YYYY, HH:mm'}}</p>
     <section class="sectionLike">
         <p>
             <button (click)="onLike()" class="boutonLike" #boutonLike>{{ likeButtonText }}</button>

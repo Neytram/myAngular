@@ -1,5 +1,6 @@
 export class Post {
     location?: string;
+    id: string;
 
     // Constructeur qui expose des propriétés grâce à public
     constructor(
@@ -8,7 +9,9 @@ export class Post {
         public image : string,
         public date: Date,
         public likes: number,
-    ) {    }
+    ) {
+        this.id=crypto.randomUUID();
+    }
 
     addLike() : void {
         this.likes++
@@ -18,7 +21,8 @@ export class Post {
         this.likes--
     }
 
-    setLocation(location: string) {
+    setLocation(location: string): Post {
         this.location = location
+        return this
     }
 }
